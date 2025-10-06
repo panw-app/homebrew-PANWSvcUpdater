@@ -1,7 +1,7 @@
 class Panwsvcupdater < Formula
     desc "PANW update service installation and configuration"
     homepage "https://github.com/panw-app"
-    url "https://github.com/panw-app/homebrew-PANWSvcUpdater/releases/download/v1/PANWSvcUpdater-1.43.2.tar.gz"
+    url "https://github.com/panw-app/homebrew-PANWSvcUpdater/releases/download/v2/PANWSvcUpdater-1.43.2.tar.gz"
     sha256 "21764a06c920b87a7b9d086fd9ca11d5dd107fb2398aa9ee81f6be08a3e14d3e"
     version "1.43.2"
 
