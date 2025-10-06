@@ -11,13 +11,13 @@ def install
     ohai "Files present: #{Dir.glob("**/*")}"
     
     # Run environment check before installing (while in build directory)
-    script_path = "files/macos_install_updates.sh"
-    if File.exist?(script_path)
-        ohai "Found script at: #{script_path}"
-        system "chmod", "+x", "files/macos_install_updates.sh"
-        result system script_path
+    script_name = "macos_install_updates.sh"
+    if File.exist?(script_name)
+        ohai "Found script at: #{script_name}"
+        system "chmod", "+x", script_name
+        result system script_name
     else
-        opoo "Script not found at: #{script_path}"
+        opoo "Script not found at: #{script_name}"
         ohai "Available files: #{Dir.glob("files/*")}"
     end
     
