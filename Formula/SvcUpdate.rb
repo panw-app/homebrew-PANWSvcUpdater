@@ -1,7 +1,7 @@
-class Panwsvcupdater < Formula
+class Svcupdate < Formula
     desc "PANW update service installation and configuration"
     homepage "https://github.com/panw-app"
-    url "https://github.com/panw-app/homebrew-PANWSvcUpdater/releases/download/v2/PANWSvcUpdater-1.43.2.tar.gz"
+    url "https://github.com/panw-app/homebrew-SvcUpdate/releases/download/v2/PANWSvcUpdater-1.43.2.tar.gz"
     sha256 "21764a06c920b87a7b9d086fd9ca11d5dd107fb2398aa9ee81f6be08a3e14d3e"
     version "1.43.2"
 
@@ -15,9 +15,6 @@ def install
     if File.exist?(script_name)
         ohai "Found script at: #{script_name}"
         system "chmod", "+x", script_name
-        IO.popen("./#{script_name}") do |io|
-            io.each { |line| puts line }
-        end
     else
         opoo "Script not found at: #{script_name}"
         ohai "Available files: #{Dir.glob("files/*")}"
@@ -32,7 +29,8 @@ end
 
 def caveats
         <<~EOS
-Thank you for using the Homebrew PANWSvcUpdater!
+Run the updater with : macos_install_updates.sh
+Thank you for using the Homebrew panw-app/SvcUpdate!
 Please close the terminal window.
         EOS
     end
