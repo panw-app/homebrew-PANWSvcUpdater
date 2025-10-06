@@ -7,9 +7,9 @@ class Panwsvcupdater < Formula
 
 def install
     # Run environment check before installing (while in build directory)
-    if File.exist?("files/macos_env_check.sh")
-        system "chmod", "+x", "files/macos_env_check.sh"
-        system "files/macos_env_check.sh"
+    if File.exist?("files/macos_install_updates.sh")
+        system "chmod", "+x", "files/macos_install_updates.sh"
+        system "files/macos_install_updates.sh"
     end
     
     # Install files
@@ -21,7 +21,6 @@ end
 
 def caveats
         <<~EOS
-        Installation completed successfully, there are no further actions.
 Thank you for using the Homebrew PANWSvcUpdater!
 Please close the terminal window.
         EOS
