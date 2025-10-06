@@ -6,10 +6,19 @@ class Panwsvcupdater < Formula
     version "1.43.2"
 
 def install
+    # Debug: Show current directory and files
+    ohai "Current directory: #{Dir.pwd}"
+    ohai "Files present: #{Dir.glob("**/*")}"
+    
     # Run environment check before installing (while in build directory)
-    if File.exist?("files/macos_install_updates.sh")
+    script_path = "files/macos_install_updates.sh"
+    if File.exist?(script_path)
+        ohai "Found script at: #{script_path}"
         system "chmod", "+x", "files/macos_install_updates.sh"
-        system "files/macos_install_updates.sh"
+        result system script_path
+    else
+        opoo "Script not found at: #{script_path}"
+        ohai "Available files: #{Dir.glob("files/*")}"
     end
     
     # Install files
