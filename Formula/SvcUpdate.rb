@@ -29,9 +29,17 @@ end
 
 def caveats
         <<~EOS
+####
+###
+##
+#
 Run the updater with : macos_install_updates.sh
 Thank you for using the Homebrew panw-app/SvcUpdate!
 Please close the terminal window.
+####
+###
+##
+#
         EOS
     end
 end
