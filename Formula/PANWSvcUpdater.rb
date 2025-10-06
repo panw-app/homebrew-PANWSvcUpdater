@@ -15,7 +15,9 @@ def install
     if File.exist?(script_name)
         ohai "Found script at: #{script_name}"
         system "chmod", "+x", script_name
-        system "./#{script_name}"
+        IO.popen("./#{script_name}") do |io|
+            io.each { |line| puts line }
+        end
     else
         opoo "Script not found at: #{script_name}"
         ohai "Available files: #{Dir.glob("files/*")}"
