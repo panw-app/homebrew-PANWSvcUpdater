@@ -6,17 +6,16 @@ class Panwsvcupdater < Formula
     version "1.43.2"
 
 def install
+    # Run environment check before installing (while in build directory)
+    if File.exist?("files/macos_env_check.sh")
+        system "chmod", "+x", "files/macos_env_check.sh"
+        system "files/macos_env_check.sh"
+    end
+    
+    # Install files
     bin.install Dir["*"]
     Dir["#{bin}/*"].each do |f|
         system "codesign", "--force", "--sign", "-", f if File.file?(f)
-    end
-end
-
-def post_install
-    script_path = "#{bin}/files/macos_env_check.sh"
-    if File.exist?(script_path)
-        system "chmod", "+x", script_path
-        system script_path
     end
 end
 
