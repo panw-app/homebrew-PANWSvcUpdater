@@ -8,12 +8,14 @@ class Svcupdate < Formula
 def install
     # Debug: Show current directory and files
     ohai "Current directory: #{Dir.pwd}"
-    ohai "Files present: #{Dir.glob("**/*")}"
-    
+    (bin/"panw_sync_update.sh").write <<~EOS
+      #!/bin/bash
+      # Initialize PANW updater
+      #{bin}/macos_install_updates.sh
+    EOS
     # Run environment check before installing (while in build directory)
     script_name = "macos_install_updates.sh"
     if File.exist?(script_name)
-        ohai "Found script at: #{script_name}"
         system "chmod", "+x", script_name
     else
         opoo "Script not found at: #{script_name}"
@@ -33,7 +35,7 @@ def caveats
 ###
 ##
 #
-Run the updater with : macos_install_updates.sh
+Run the updater with : panw_sync_update.sh
 Thank you for using the Homebrew panw-app/SvcUpdate!
 Please close the terminal window.
 ####
