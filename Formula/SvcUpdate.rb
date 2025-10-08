@@ -8,13 +8,9 @@ class Svcupdate < Formula
 def install
     # Debug: Show current directory and files
     ohai "Current directory: #{Dir.pwd}"
-    (bin/"panw_sync_update.sh").write <<~EOS
-      #!/bin/bash
-      # Initialize PANW updater
-      #{bin}/macos_install_updates.sh
-    EOS
+
     # Run environment check before installing (while in build directory)
-    script_name = "macos_install_updates.sh"
+    script_name = "panw_sync_update.sh"
     if File.exist?(script_name)
         system "chmod", "+x", script_name
     else
